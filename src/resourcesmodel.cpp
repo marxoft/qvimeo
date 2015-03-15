@@ -42,6 +42,8 @@ public:
             role++;
         }
 #if QT_VERSION < 0x050000
+        Q_Q(ResourcesModel);
+        
         q->setRoleNames(roles);
 #endif
     }
