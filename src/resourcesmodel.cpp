@@ -32,21 +32,6 @@ public:
         hasMore(false)
     {
     }
-    
-    void setRoleNames(const QVariantMap &resource) {
-        roles.clear();        
-        int role = Qt::UserRole + 1;
-        
-        foreach (QString key, resource.uniqueKeys()) {
-            roles[role] = key.toUtf8();
-            role++;
-        }
-#if QT_VERSION < 0x050000
-        Q_Q(ResourcesModel);
-        
-        q->setRoleNames(roles);
-#endif
-    }
         
     void _q_onListRequestFinished() {
         if (!request) {
@@ -68,7 +53,7 @@ public:
                         setRoleNames(list.first().toMap());
                     }
                     
-                    q->beginInsertRows(QModelIndex(), items.size(), items.size() + list.size());
+                    q->beginInsertRows(QModelIndex(), items.size(), items.size() + list.size() - 1);
                     
                     foreach (QVariant item, list) {
                         items << item.toMap();
@@ -99,6 +84,10 @@ public:
                 QString path = result.value("uri").toString().section('/', 0, -2);
                 
                 if (path == resourcePath) {
+                    if (items.isEmpty()) {
+                        setRoleNames(result);
+                    }
+                    
                     q->beginInsertRows(QModelIndex(), 0, 0);
                     items.prepend(result);
                     q->endInsertRows();
