@@ -100,6 +100,10 @@ public:
             <td>HeightRole</td>
             <td>height</td>
         </tr>
+        <tr>
+            <td>UrlRole</td>
+            <td>url</td>
+        </tr>
     </table>
         
     Example usage:
@@ -162,6 +166,7 @@ StreamsModel::StreamsModel(QObject *parent) :
     d->roles[ExtensionRole] = "ext";
     d->roles[WidthRole] = "width";
     d->roles[HeightRole] = "height";
+    d->roles[UrlRole] = "url";
 #if QT_VERSION < 0x050000
     setRoleNames(d->roles);
 #endif
