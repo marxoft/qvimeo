@@ -23,6 +23,7 @@ HEADERS += \
     json.h \
     model.h \
     model_p.h \
+    qvimeo_global.h \
     request.h \
     request_p.h \
     resourcesmodel.h \
@@ -44,6 +45,7 @@ SOURCES += \
 headers.files += \
     authenticationrequest.h \
     model.h \
+    qvimeo_global.h \
     request.h \
     resourcesmodel.h \
     resourcesrequest.h \
