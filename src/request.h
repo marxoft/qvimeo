@@ -14,8 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef REQUEST_H
-#define REQUEST_H
+#ifndef QVIMEO_REQUEST_H
+#define QVIMEO_REQUEST_H
 
 #include "qvimeo_global.h"
 #include <QObject>
@@ -176,4 +176,4 @@ private:
 
 }
 
-#endif // REQUEST_H
+#endif // QVIMEO_REQUEST_H

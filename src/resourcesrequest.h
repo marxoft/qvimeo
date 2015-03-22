@@ -14,8 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  
-#ifndef RESOURCESREQUEST_H
-#define RESOURCESREQUEST_H
+#ifndef QVIMEO_RESOURCESREQUEST_H
+#define QVIMEO_RESOURCESREQUEST_H
 
 #include "request.h"
 
@@ -47,4 +47,4 @@ private:
 
 }
 
-#endif // RESOURCESREQUEST_H
+#endif // QVIMEO_RESOURCESREQUEST_H

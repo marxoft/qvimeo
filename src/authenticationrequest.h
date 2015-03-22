@@ -14,8 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  
-#ifndef AUTHENTICATIONREQUEST_H
-#define AUTHENTICATIONREQUEST_H
+#ifndef QVIMEO_AUTHENTICATIONREQUEST_H
+#define QVIMEO_AUTHENTICATIONREQUEST_H
 
 #include "request.h"
 
@@ -55,4 +55,4 @@ private:
 
 }
 
-#endif // AUTHENTICATIONREQUEST_H
+#endif // QVIMEO_AUTHENTICATIONREQUEST_H

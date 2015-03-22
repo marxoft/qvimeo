@@ -14,8 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PLUGIN_H
-#define PLUGIN_H
+#ifndef QVIMEO_PLUGIN_H
+#define QVIMEO_PLUGIN_H
 
 #include <QtGlobal>
 #if QT_VERSION >= 0x050000
@@ -48,4 +48,4 @@ public:
 
 }
 
-#endif // PLUGIN_H
+#endif // QVIMEO_PLUGIN_H

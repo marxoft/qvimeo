@@ -14,8 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef RESOURCESMODEL_H
-#define RESOURCESMODEL_H
+#ifndef QVIMEO_RESOURCESMODEL_H
+#define QVIMEO_RESOURCESMODEL_H
 
 #include "model.h"
 #include "resourcesrequest.h"
@@ -91,4 +91,4 @@ private:
 
 }
 
-#endif // RESOURCESMODEL_H
+#endif // QVIMEO_RESOURCESMODEL_H

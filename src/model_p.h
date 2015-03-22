@@ -14,8 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MODEL_P_H
-#define MODEL_P_H
+#ifndef QVIMEO_MODEL_P_H
+#define QVIMEO_MODEL_P_H
 
 #include "model.h"
 
@@ -41,4 +41,4 @@ public:
 
 }
 
-#endif // MODEL_P_H
+#endif // QVIMEO_MODEL_P_H
