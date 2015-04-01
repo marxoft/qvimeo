@@ -47,13 +47,13 @@ public:
                 }
                 
                 q->endInsertRows();
-                emit q->countChanged();
+                emit q->countChanged(q->rowCount());
             }
         }
         
         StreamsModel::disconnect(request, SIGNAL(finished()), q, SLOT(_q_onListRequestFinished()));
     
-        emit q->statusChanged();
+        emit q->statusChanged(request->status());
     }
     
     StreamsRequest *request;
@@ -191,6 +191,18 @@ StreamsRequest::Status StreamsModel::status() const {
 }
 
 /*!
+    \property QVariant StreamsModel::result
+    \brief The current result of the model.
+    
+    \sa StreamsRequest::result
+*/
+QVariant StreamsModel::result() const {
+    Q_D(const StreamsModel);
+    
+    return d->request->result();
+}
+
+/*!
     \property enum StreamsModel::error
     \brief The error type of the model.
     
@@ -241,7 +253,7 @@ void StreamsModel::list(const QString &id) {
         clear();
         connect(d->request, SIGNAL(finished()), this, SLOT(_q_onListRequestFinished()));
         d->request->list(id);
-        emit statusChanged();
+        emit statusChanged(d->request->status());
     }
 }
 
@@ -267,7 +279,7 @@ void StreamsModel::reload() {
         clear();
         connect(d->request, SIGNAL(finished()), this, SLOT(_q_onListRequestFinished()));
         d->request->list(d->id);
-        emit statusChanged();
+        emit statusChanged(d->request->status());
     }
 }
 

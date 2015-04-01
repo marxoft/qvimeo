@@ -127,7 +127,7 @@ void Request::setAccessToken(const QString &token) {
     
     if (token != d->accessToken) {
         d->accessToken = token;
-        emit accessTokenChanged();
+        emit accessTokenChanged(token);
     }
 #ifdef QVIMEO_DEBUG
     qDebug() << "QVimeo::Request::setAccessToken" << token;
@@ -789,7 +789,7 @@ void RequestPrivate::setStatus(Request::Status s) {
     if (s != status) {
         Q_Q(Request);
         status = s;
-        emit q->statusChanged();
+        emit q->statusChanged(s);
     }
 #ifdef QVIMEO_DEBUG
     qDebug() << "QVimeo::RequestPrivate::setStatus " << Request::Status(s);

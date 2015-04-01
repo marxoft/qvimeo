@@ -32,6 +32,7 @@ class QVIMEOSHARED_EXPORT ResourcesModel : public Model
     Q_PROPERTY(QString clientSecret READ clientSecret WRITE setClientSecret NOTIFY clientSecretChanged)
     Q_PROPERTY(QString accessToken READ accessToken WRITE setAccessToken NOTIFY accessTokenChanged)
     Q_PROPERTY(QVimeo::ResourcesRequest::Status status READ status NOTIFY statusChanged)
+    Q_PROPERTY(QVariant result READ result NOTIFY statusChanged)
     Q_PROPERTY(QVimeo::ResourcesRequest::Error error READ error NOTIFY statusChanged)
     Q_PROPERTY(QString errorString READ errorString NOTIFY statusChanged)
                 
@@ -48,6 +49,8 @@ public:
     void setAccessToken(const QString &token);
     
     ResourcesRequest::Status status() const;
+    
+    QVariant result() const;
     
     ResourcesRequest::Error error() const;
     QString errorString() const;
@@ -76,8 +79,8 @@ public Q_SLOTS:
 Q_SIGNALS:
     void clientIdChanged();
     void clientSecretChanged();
-    void accessTokenChanged();
-    void statusChanged();
+    void accessTokenChanged(const QString &token);
+    void statusChanged(QVimeo::ResourcesRequest::Status s);
     
 private:        
     Q_DECLARE_PRIVATE(ResourcesModel)
