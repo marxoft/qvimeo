@@ -28,6 +28,7 @@ class QVIMEOSHARED_EXPORT ResourcesModel : public Model
 {
     Q_OBJECT
     
+    Q_PROPERTY(bool canFetchMore READ canFetchMore NOTIFY statusChanged)
     Q_PROPERTY(QString clientId READ clientId WRITE setClientId NOTIFY clientIdChanged)
     Q_PROPERTY(QString clientSecret READ clientSecret WRITE setClientSecret NOTIFY clientSecretChanged)
     Q_PROPERTY(QString accessToken READ accessToken WRITE setAccessToken NOTIFY accessTokenChanged)
@@ -58,7 +59,7 @@ public:
     void setNetworkAccessManager(QNetworkAccessManager *manager);
     
     bool canFetchMore(const QModelIndex &parent = QModelIndex()) const;
-    void fetchMore(const QModelIndex &parent = QModelIndex());
+    Q_INVOKABLE void fetchMore(const QModelIndex &parent = QModelIndex());
     
 public Q_SLOTS:
     void list(const QString &resourcePath, const QVariantMap &filters = QVariantMap());

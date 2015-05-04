@@ -50,6 +50,7 @@ headers.files += \
     resourcesmodel.h \
     resourcesrequest.h \
     streamsmodel.h \
+    streamsrequest.h \
     urls.h
 
 !isEmpty(INSTALL_SRC_PREFIX) {

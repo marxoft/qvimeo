@@ -207,9 +207,7 @@ StreamsRequest::StreamsRequest(QObject *parent) :
 /*!
     \brief Requests a list of streams for the video identified by id.
 */
-void StreamsRequest::list(const QString &id) {
-    Q_D(StreamsRequest);
-    
+void StreamsRequest::list(const QString &id) {    
     setUrl(VIDEO_PAGE_URL + "/" + id);
     get(false);
 }
