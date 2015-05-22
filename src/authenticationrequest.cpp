@@ -122,7 +122,7 @@ void AuthenticationRequest::setRedirectUri(const QString &uri) {
         emit redirectUriChanged();
     }
 #if QVIMEO_DEBUG
-    qDebug() << "AuthenticationRequest::setRedirectUri" << uri;
+    qDebug() << "QVimeo::AuthenticationRequest::setRedirectUri" << uri;
 #endif
 }
 

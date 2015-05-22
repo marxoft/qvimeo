@@ -2,8 +2,6 @@ TEMPLATE = lib
 
 #DEFINES += QVIMEO_DEBUG
 
-#unix:INSTALL_SRC_PREFIX = /opt
-
 QT += network
 QT -= gui
 
@@ -16,6 +14,7 @@ contains(MEEGO_EDITION,harmattan) {
 } else {
     CONFIG += create_prl
     DEFINES += QVIMEO_LIBRARY
+    INSTALLS += headers
 }
 
 HEADERS += \
@@ -61,4 +60,4 @@ headers.files += \
     headers.path = /usr/include/qvimeo
 }
 
-INSTALLS += target headers
+INSTALLS += target

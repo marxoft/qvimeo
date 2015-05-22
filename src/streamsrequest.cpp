@@ -17,7 +17,6 @@
 #include "streamsrequest.h"
 #include "request_p.h"
 #include "urls.h"
-#include <QNetworkAccessManager>
 #include <QNetworkReply>
 
 namespace QVimeo {
@@ -114,13 +113,14 @@ public:
             setStatus(Request::Ready);
             setError(Request::NoError);
             setErrorString(QString());
-            emit q->finished();
         }
         else {
             setStatus(Request::Failed);
             setError(Request::ParseError);
             setErrorString(Request::tr("Unable to parse response"));
         }
+
+        emit q->finished();
     }        
     
     static FormatHash formatHash;
