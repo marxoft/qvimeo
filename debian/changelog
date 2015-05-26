@@ -1,3 +1,9 @@
+qvimeo (0.0.4) unstable; urgency=low
+
+  * Fix encoding of strings sent to the server.
+
+ -- Stuart Howarth <showarth@marxoft.co.uk>  Tue,  26 May 2015 21:24:27 +0000
+
 qvimeo (0.0.3) unstable; urgency=low
 
   * Bug fixes.

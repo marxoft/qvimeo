@@ -50,7 +50,7 @@ inline void addUrlQueryItems(QUrlQuery *query, const QVariantMap &map) {
         switch (iterator.value().type()) {
         case QVariant::String:
         case QVariant::ByteArray:
-            value = iterator.value().toByteArray();
+            value = iterator.value().toString().toUtf8();
             break;
         default:
             value = QtJson::Json::serialize(iterator.value());
@@ -75,7 +75,7 @@ inline void addUrlQueryItems(QUrl *url, const QVariantMap &map) {
         switch (iterator.value().type()) {
         case QVariant::String:
         case QVariant::ByteArray:
-            value = iterator.value().toByteArray();
+            value = iterator.value().toString().toUtf8();
             break;
         default:
             value = QtJson::Json::serialize(iterator.value());
@@ -100,7 +100,7 @@ inline void addRequestHeaders(QNetworkRequest *request, const QVariantMap &map) 
         switch (iterator.value().type()) {
         case QVariant::String:
         case QVariant::ByteArray:
-            value = iterator.value().toByteArray();
+            value = iterator.value().toString().toUtf8();
             break;
         default:
             value = QtJson::Json::serialize(iterator.value());
@@ -124,7 +124,7 @@ inline void addPostBody(QString *body, const QVariantMap &map) {
         switch (iterator.value().type()) {
         case QVariant::String:
         case QVariant::ByteArray:
-            value = iterator.value().toByteArray();
+            value = iterator.value().toString().toUtf8();
             break;
         default:
             value = QtJson::Json::serialize(iterator.value());
