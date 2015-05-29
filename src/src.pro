@@ -1,21 +1,13 @@
 TEMPLATE = lib
 
 #DEFINES += QVIMEO_DEBUG
+DEFINES += QVIMEO_STATIC_LIBRARY
 
 QT += network
 QT -= gui
 
 TARGET = qvimeo
 DESTDIR = ../lib
-
-contains(MEEGO_EDITION,harmattan) {
-    CONFIG += staticlib
-    DEFINES += QVIMEO_STATIC_LIBRARY
-} else {
-    CONFIG += create_prl
-    DEFINES += QVIMEO_LIBRARY
-    INSTALLS += headers
-}
 
 HEADERS += \
     authenticationrequest.h \
@@ -51,13 +43,25 @@ headers.files += \
     streamsmodel.h \
     streamsrequest.h \
     urls.h
-
-!isEmpty(INSTALL_SRC_PREFIX) {
-    target.path = $$INSTALL_SRC_PREFIX/lib
-    headers.path = $$INSTALL_SRC_PREFIX/include/qvimeo
-} else {
-    target.path = /usr/lib
-    headers.path = /usr/include/qvimeo
+    
+symbian {
+    TARGET.CAPABILITY += NetworkServices ReadUserData WriteUserData
+    TARGET.EPOCALLOWDLLDATA = 1
+    TARGET.EPOCHEAPSIZE = 0x20000 0x8000000
+    TARGET.EPOCSTACKSIZE = 0x14000
 }
 
-INSTALLS += target
+contains(DEFINES,QVIMEO_STATIC_LIBRARY) {
+    CONFIG += staticlib
+} else {
+    CONFIG += create_prl
+    INSTALLS += target headers
+
+    !isEmpty(INSTALL_SRC_PREFIX) {
+        target.path = $$INSTALL_SRC_PREFIX/lib
+        headers.path = $$INSTALL_SRC_PREFIX/include/qvimeo
+    } else {
+        target.path = /usr/lib
+        headers.path = /usr/include/qvimeo
+    }
+}

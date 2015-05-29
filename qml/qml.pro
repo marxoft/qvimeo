@@ -3,25 +3,26 @@ TARGET = qvimeoplugin
 CONFIG += qt plugin
 LIBS += -L../lib -lqvimeo
 
-contains(MEEGO_EDITION,harmattan) {
-    CONFIG += link_pkgconfig
-    INSTALL_QML_PREFIX = /usr
-} else {
-    CONFIG += link_prl
-    PKGCONFIG = libqvimeo
-}
-
 lessThan(QT_MAJOR_VERSION, 5) {
     QT += declarative
 } else {
     QT += qml
 }
 
+INCLUDEPATH += ../src
+
 HEADERS += \
     plugin.h
 
 SOURCES += \
     plugin.cpp
+    
+contains(QVIMEO_STATIC_LIBRARY) {
+    CONFIG += link_pkgconfig
+} else {
+    CONFIG += link_prl
+    PKGCONFIG = libqvimeo
+}
 
 qml.files = qmldir
 
