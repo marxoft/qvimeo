@@ -101,8 +101,11 @@ public:
                 
                 if (!v.isNull()) {
                     QVariantMap m = v.toMap();
+                    QUrl u = m.value("url").toString();
+                    u.setScheme("http");
+                    
                     Format format = iterator.value();
-                    format["url"] = m.value("url");
+                    format["url"] = u;
                     format["width"] = m.value("width");
                     format["height"] = m.value("height");
                     list << format;

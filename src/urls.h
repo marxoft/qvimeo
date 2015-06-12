@@ -42,7 +42,7 @@ static const QString INTERACT_SCOPE("interact");
 static const QString UPLOAD_SCOPE("upload");
 
 // VideoPage
-static const QString VIDEO_PAGE_URL("http://player.vimeo.com/video");
+static const QString VIDEO_PAGE_URL("https://player.vimeo.com/video");
 
 }
 
