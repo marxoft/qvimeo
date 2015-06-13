@@ -1,3 +1,9 @@
+qvimeo (0.0.5) unstable; urgency=low
+
+  * Use SSL when retrieving video streams.
+
+ -- Stuart Howarth <showarth@marxoft.co.uk>  Sat,  13 Jun 2015 14:17:31 +0000
+
 qvimeo (0.0.4) unstable; urgency=low
 
   * Fix encoding of strings sent to the server.
