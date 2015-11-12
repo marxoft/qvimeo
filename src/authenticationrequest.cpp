@@ -44,8 +44,8 @@ public:
         bool ok;
         setResult(QtJson::Json::parse(reply->readAll(), ok));
         
-        QNetworkReply::NetworkError e = reply->error();
-        QString es = reply->errorString();
+        const QNetworkReply::NetworkError e = reply->error();
+        const QString es = reply->errorString();
         reply->deleteLater();
         reply = 0;
     
@@ -150,6 +150,10 @@ void AuthenticationRequest::setScopes(const QStringList &scopes) {
     \brief Submits \a code in exchange for a Vimeo access token.
 */
 void AuthenticationRequest::exchangeCodeForAccessToken(const QString &code) {
+    if (status() == Loading) {
+        return;
+    }
+    
     QVariantMap h;
     h["Authorization"] = "basic " + QByteArray(clientId().toUtf8() + ":" + clientSecret().toUtf8()).toBase64();
     setUrl(TOKEN_URL);
@@ -162,6 +166,10 @@ void AuthenticationRequest::exchangeCodeForAccessToken(const QString &code) {
     \brief Requests a client access token required for unauthenticated requests.
 */
 void AuthenticationRequest::requestClientAccessToken() {
+    if (status() == Loading) {
+        return;
+    }
+    
     QVariantMap h;
     h["Authorization"] = "basic " + QByteArray(clientId().toUtf8() + ":" + clientSecret().toUtf8()).toBase64();
     setUrl(CLIENT_AUTH_URL);

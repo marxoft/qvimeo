@@ -876,11 +876,11 @@ void RequestPrivate::_q_onReplyFinished() {
     }
     
     bool ok = true;
-    QString response = QString::fromUtf8(reply->readAll());
+    const QString response = QString::fromUtf8(reply->readAll());
     setResult(response.isEmpty() ? response : QtJson::Json::parse(response, ok));
     
-    QNetworkReply::NetworkError e = reply->error();
-    QString es = reply->errorString();
+    const QNetworkReply::NetworkError e = reply->error();
+    const QString es = reply->errorString();
     reply->deleteLater();
     reply = 0;
     
