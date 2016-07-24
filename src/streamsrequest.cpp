@@ -21,39 +21,6 @@
 
 namespace QVimeo {
 
-class Format : public QVariantMap
-{
-
-public:
-    Format() :
-        QVariantMap()
-    {
-    }
-    
-    Format(const QString &id, const QString &desc, const QString &ext, int width, int height) :
-        QVariantMap()
-    {
-        insert("id", id);
-        insert("description", desc);
-        insert("ext", ext);
-        insert("width", width);
-        insert("height", height);
-    }
-};
-
-class FormatHash : public QHash<QString, Format>
-{
-
-public:
-    FormatHash() : 
-        QHash<QString, Format>() 
-    {
-        insert("mobile", Format("mobile", "H264 audio/video", "mp4", 480, 270));
-        insert("sd", Format("sd", "H264 audio/video", "mp4", 640, 352));
-        insert("hd", Format("hd", "H264 audio/video", "mp4", 1280/1920, 720/1080));
-    }
-};
-
 class StreamsRequestPrivate : public RequestPrivate
 {
 
@@ -94,28 +61,22 @@ public:
         }
         
         bool ok;
-        const QVariantMap info = QtJson::Json::parse(response.section("\"h264\":", 1, 1)
-                                                             .section(",\"hls\":", 0, 0), ok).toMap();
+        const QVariantList formats = QtJson::Json::parse(response.section("\"progressive\":", 1, 1)
+                                                                 .section("]", 0, 0) + "]", ok).toList();
         
         if (ok) {
             QVariantList list;
-            QHashIterator<QString, Format> iterator(formatHash);
             
-            while (iterator.hasNext()) {
-                iterator.next();
-                QVariant v = info.value(iterator.key());
-                
-                if (!v.isNull()) {
-                    QVariantMap m = v.toMap();
-                    QUrl u = m.value("url").toString();
-                    u.setScheme("http");
-                    
-                    Format format = iterator.value();
-                    format["url"] = u;
-                    format["width"] = m.value("width");
-                    format["height"] = m.value("height");
-                    list << format;
-                }
+            foreach (const QVariant &v, formats) {
+                const QVariantMap f = v.toMap();
+                QVariantMap format;
+                format["description"] = f.value("mime");
+                format["ext"] = "mp4";
+                format["id"] = f.value("quality");
+                format["url"] = f.value("url").toString().replace("https://", "http://");
+                format["width"] = f.value("width");
+                format["height"] = f.value("height");
+                list << format;
             }
             
             setResult(list);
@@ -131,13 +92,9 @@ public:
 
         emit q->finished();
     }        
-    
-    static FormatHash formatHash;
-                
+                    
     Q_DECLARE_PUBLIC(StreamsRequest)
 };
-
-FormatHash StreamsRequestPrivate::formatHash;
 
 /*!
     \class StreamsRequest
