@@ -861,10 +861,10 @@ void RequestPrivate::_q_onReplyFinished() {
     Q_Q(Request);
     
     if (redirects < MAX_REDIRECTS) {
-        QUrl redirect = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+        QUrl redirect = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
     
         if (redirect.isEmpty()) {
-            redirect = reply->header(QNetworkRequest::LocationHeader).toUrl();
+            redirect = reply->header(QNetworkRequest::LocationHeader).toString();
         }
     
         if (!redirect.isEmpty()) {

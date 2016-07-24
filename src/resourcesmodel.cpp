@@ -41,12 +41,12 @@ public:
         Q_Q(ResourcesModel);
     
         if (request->status() == ResourcesRequest::Ready) {
-            QVariantMap result = request->result().toMap();
+            const QVariantMap result = request->result().toMap();
         
             if (!result.isEmpty()) {
                 hasMore = !result.value("paging").toMap().value("next").isNull();
             
-                QVariantList list = result.value("data").toList();
+                const QVariantList list = result.value("data").toList();
             
                 if (!list.isEmpty()) {
                     if (items.isEmpty()) {
@@ -55,7 +55,7 @@ public:
                     
                     q->beginInsertRows(QModelIndex(), items.size(), items.size() + list.size() - 1);
                     
-                    foreach (QVariant item, list) {
+                    foreach (const QVariant &item, list) {
                         items << item.toMap();
                     }
                     
@@ -78,10 +78,10 @@ public:
         Q_Q(ResourcesModel);
     
         if (request->status() == ResourcesRequest::Ready) {
-            QVariantMap result = request->result().toMap();
+            const QVariantMap result = request->result().toMap();
         
             if (!result.isEmpty()) {
-                QString path = result.value("uri").toString().section('/', 0, -2);
+                const QString path = result.value("uri").toString().section('/', 0, -2);
                 
                 if (path == resourcePath) {
                     if (items.isEmpty()) {
@@ -109,10 +109,10 @@ public:
         Q_Q(ResourcesModel);
     
         if (request->status() == ResourcesRequest::Ready) {
-            QVariantMap result = request->result().toMap();
+            const QVariantMap result = request->result().toMap();
         
             if (!result.isEmpty()) {
-                QVariant uri = result.value("uri");
+                const QVariant uri = result.value("uri");
                 
                 if (!uri.isNull()) {
                     for (int i = 0; i < items.size(); i++) {
