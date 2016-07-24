@@ -1,3 +1,9 @@
+qvimeo (0.0.8) unstable; urgency=low
+
+  * Fix retrieval of video streams in StreamsRequest.
+
+ -- Stuart Howarth <showarth@marxoft.co.uk>  Sun, 24 Jul 2016 20:56:12 +0000
+
 qvimeo (0.0.7) unstable; urgency=low
 
   * Prevent further network requests when status is Loading.
